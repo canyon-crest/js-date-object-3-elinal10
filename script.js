@@ -45,14 +45,15 @@ document.getElementById("warmUpDate").textContent = day;
 // STEP 7: Get the month using .getMonth()
 //         IMPORTANT: .getMonth() returns 0–11 (January = 0)
 //         so you must add 1 to get the correct month number.
-
+let month = now.getMonth() + 1;
 // STEP 8: Get the day of the month using .getDate()
-
+let dayNumber = now.getDate();
 // STEP 9: Get the year using .getFullYear()
-
+let year = now.getFullYear();
 // STEP 10: Build the date string: month + "/" + day + "/" + year
 //          Display it in the element with ID "myDate"
 
+document.getElementById("myDate").textContent = month + "/" + dayNumber + "/" + year;
 
 // ============================================
 //  PART 2: Elapsed Timer
@@ -60,10 +61,14 @@ document.getElementById("warmUpDate").textContent = day;
 // Build a timer that counts up from 0, updating every ~10ms.
 // Display the elapsed time in seconds (e.g., "1.230") in
 // the element with ID "myTimer".
-
+let startTime = new Date().getTime()
 // STEP 11: Record the start time using new Date().getTime()
 //          This gives you the current time in milliseconds.
-
+let timerID = setInterval(function time(){
+  let currentTime = new Date().getDate;
+  let elasped = (currentTime - startTime)/1000;
+  document.getElementById("myTimer").innerHTML = elasped.toFixed(3)
+}, 10);
 // STEP 12: Create a variable to hold the timer ID (for stopping later).
 //          Use setInterval() with a delay of 10 milliseconds.
 //          Inside the interval function:
@@ -71,7 +76,6 @@ document.getElementById("warmUpDate").textContent = day;
 //          b) Calculate elapsed seconds: (currentTime - startTime) / 1000
 //          c) Display the elapsed time using .toFixed(3)
 //             in the element with ID "myTimer"
-
 
 // ============================================
 //  PART 3: Start/Stop Toggle Button
@@ -85,7 +89,7 @@ document.getElementById("warmUpDate").textContent = day;
 
 // STEP 13: Create a variable to track whether the timer is
 //          currently running (let running = true;)
-
+let running = true;
 // STEP 14: Add a click event listener to the button (ID "myBtn").
 //          Inside the listener:
 //          a) If running is true:
@@ -97,3 +101,18 @@ document.getElementById("warmUpDate").textContent = day;
 //             - Start a new setInterval (same as STEP 12)
 //             - Change button innerHTML to "Stop"
 //             - Set running to true
+document.getElementById("myBtn").addEventListener("click", function(){
+  if (running){
+    clearInterval(timerID);
+    document.getElementById("myBtn").innerHTML = "Start";
+    running = false;
+  } else {
+    timerID = setInterval(function(){
+      let currentTime = new Date().getTime90;
+      let elasped = (currentTime - startTime)/1000;
+  document.getElementById("myTimer").innerHTML = elasped.toFixed(3)
+}, 10);
+    running = true;
+    document.getElementById("myBtn").innerHTML = "Stop";
+  }
+})
