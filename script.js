@@ -112,7 +112,7 @@ myBtn.addEventListener('click', function(){
   }
   else{
     interval = setInterval(time, 10);
-    myBtn.innerHTML = "stop"
+    myBtn.innerHTML = "Stop"
     running = true;
   }
 });
