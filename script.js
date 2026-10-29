@@ -61,14 +61,17 @@ document.getElementById("myDate").textContent = month + "/" + dayNumber + "/" + 
 // Build a timer that counts up from 0, updating every ~10ms.
 // Display the elapsed time in seconds (e.g., "1.230") in
 // the element with ID "myTimer".
-let startTime = new Date().getTime()
-// STEP 11: Record the start time using new Date().getTime()
-//          This gives you the current time in milliseconds.
-let timerID = setInterval(function time(){
-  let currentTime = new Date().getDate;
-  let elasped = (currentTime - startTime)/1000;
-  document.getElementById("myTimer").innerHTML = elasped.toFixed(3)
-}, 10);
+
+let d = new Date();
+let start = d.getTime();
+let running = true;
+
+let interval = setInterval(time, 10);
+function time (){
+   myTimer.innerHTML = ((new Date().getTime()- start )/1000).toFixed(3); 
+  }
+
+
 // STEP 12: Create a variable to hold the timer ID (for stopping later).
 //          Use setInterval() with a delay of 10 milliseconds.
 //          Inside the interval function:
@@ -89,7 +92,7 @@ let timerID = setInterval(function time(){
 
 // STEP 13: Create a variable to track whether the timer is
 //          currently running (let running = true;)
-let running = true;
+
 // STEP 14: Add a click event listener to the button (ID "myBtn").
 //          Inside the listener:
 //          a) If running is true:
@@ -101,18 +104,15 @@ let running = true;
 //             - Start a new setInterval (same as STEP 12)
 //             - Change button innerHTML to "Stop"
 //             - Set running to true
-document.getElementById("myBtn").addEventListener("click", function(){
-  if (running){
-    clearInterval(timerID);
-    document.getElementById("myBtn").innerHTML = "Start";
+myBtn.addEventListener('click', function(){
+  if(running){
+    clearInterval(interval);
+    myBtn.innerHTML = "Start"
     running = false;
-  } else {
-    timerID = setInterval(function(){
-      let currentTime = new Date().getTime90;
-      let elasped = (currentTime - startTime)/1000;
-  document.getElementById("myTimer").innerHTML = elasped.toFixed(3)
-}, 10);
-    running = true;
-    document.getElementById("myBtn").innerHTML = "Stop";
   }
-})
+  else{
+    interval = setInterval(time, 10);
+    myBtn.innerHTML = "stop"
+    running = true;
+  }
+});
